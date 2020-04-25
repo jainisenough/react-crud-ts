@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
+import configureStore from './store';
+import Loading from './component/loading';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+(async () => {
+  const { store, persistor } = await configureStore();
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  ReactDOM.render(
+    <StrictMode>
+      <Provider store={store}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </StrictMode>,
+    document.getElementById('app')
+  );
+})();

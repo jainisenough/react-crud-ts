@@ -1,0 +1,33 @@
+{
+  "extends": ["airbnb", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "rules": {
+    "max-len": ["error", { "code": 120, "ignoreUrls": true }],
+    "comma-dangle": ["error", "never"],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "semi": [2, "always"],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/no-unused-state": 2,
+    "react/prop-types": 2,
+    "no-empty-pattern": 2,
+    "no-prototype-builtins": 2,
+    "no-undef": 2,
+    "no-unused-vars": 2,
+    "arrow-parens": ["error", "as-needed"],
+    "prettier/prettier": "error",
+    "spaced-comment": [2, "always", {"exceptions": ["-"], "treatedAsMarkers": ["///"]}],
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "import/no-extraneous-dependencies": [2, { "devDependencies": ["**/test.tsx", "**/test.ts"] }],
+    "@typescript-eslint/indent": [2, 2]
+  }
+}
