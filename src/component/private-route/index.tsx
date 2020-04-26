@@ -7,13 +7,13 @@ import Loading from '../loading';
 
 const PrivateRoute = ({ component: Component, ...rest }: { component: React.ComponentType<RouteProps> }) => {
   const [token, setToken] = useState<unknown>(undefined);
-  //const [loading, setLoading] = useState(true);
   useEffect(() => {
     storage
       .getItem('X-Access-Token')
       .then(setToken)
-      .catch(() => {
-        //setLoading(false);
+      .catch(e => {
+        console.log(e);
+        setToken(null);
       });
   }, []);
   return (
