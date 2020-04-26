@@ -14,36 +14,17 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import storage from '../../../helper/storage';
 import { login } from '../../../action/user';
-import './Login.css';
 import { ADMIN } from '../../../route-link';
+import style from './style';
 
 const Copyright = lazy(() => import('../copyright'));
-const useStyles = makeStyles(theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
-}));
 
 const Login = ({ login }: any) => {
   const history = useHistory();
-  const classes = useStyles();
+  const classes = style();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -57,7 +38,7 @@ const Login = ({ login }: any) => {
           initialValues={{ email: '', password: '' }}
           onSubmit={async values => {
             const resp = await login(values.email, values.password);
-            console.log(resp);
+            storage.setItem('X-Access-Token', resp.response.headers['X-Access-Token']);
             history.replace(ADMIN.USER);
           }}
           validationSchema={yupObject().shape({

@@ -22,9 +22,3 @@ export namespace Redux {
     payload?: any;
   }
 }
-
-export namespace Route {
-  interface RouteProps extends ReactRouterDom.RouteProps {
-    private?: boolean;
-  }
-}

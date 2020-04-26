@@ -1,8 +1,8 @@
 import { actionTypeCreator } from '../helper/action-helper';
-import { getJSON } from '../helper/request';
+import { post } from '../helper/request';
 
 export const userActionType = actionTypeCreator('USER');
-export const login = (username: string, password: string) =>
-  getJSON('https://api.github.com/users?per_page=1').toPromise();
+export const login = (email: string, password: string) =>
+  post(`${process.env.REACT_APP_BASE_URL}/user/login`, { email, password }).toPromise();
 export const getUsers = () => ({ type: userActionType.pending });
 export const setUsers = (payload: unknown) => ({ type: userActionType.fulfilled, payload });

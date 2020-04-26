@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from 'react';
-import { HashRouter, Switch } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import { ADMIN } from './route-link';
 import Loading from './component/loading';
-import Router from './component/router';
+import PrivateRoute from './component/private-route';
 import ErrorBoundary from './component/error-boundary';
 
 const Header = lazy(() => import('./component/admin/header'));
@@ -17,8 +17,8 @@ const App = () => (
       <ErrorBoundary>
         <Header title="Admin App" />
         <Switch>
-          <Router exact path={ADMIN.LOGIN} component={Login} />
-          <Router exact private={true} path={ADMIN.USER} component={User} />
+          <Route exact path={ADMIN.LOGIN} component={Login} />
+          <PrivateRoute exact path={ADMIN.USER} component={User} />
         </Switch>
         <Footer />
       </ErrorBoundary>
