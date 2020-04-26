@@ -8,13 +8,15 @@ import Loading from '../loading';
 const PrivateRoute = ({ component: Component, ...rest }: { component: React.ComponentType<RouteProps> }) => {
   const [token, setToken] = useState<unknown>(undefined);
   useEffect(() => {
-    storage
-      .getItem('X-Access-Token')
-      .then(setToken)
-      .catch(e => {
+    (async () => {
+      try {
+        const token = await storage.getItem('X-Access-Token');
+        setToken(token);
+      } catch (e) {
         console.log(e);
         setToken(null);
-      });
+      }
+    })();
   }, []);
   return (
     <Route
