@@ -18,13 +18,13 @@ import Container from '@material-ui/core/Container';
 import storage from '../../../helper/storage';
 import { login } from '../../../action/user';
 import { ADMIN } from '../../../route-link';
-import style from './style';
+import useStyles from './style';
 
 const Copyright = lazy(() => import('../copyright'));
 
 const Login = ({ login }: any) => {
   const history = useHistory();
-  const classes = style();
+  const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -118,4 +118,4 @@ Login.propTypes = {
 };
 
 const LoginComponent = connect(null, mapDispatchToProps)(Login);
-export default memo(LoginComponent, () => true);
+export default memo(LoginComponent);

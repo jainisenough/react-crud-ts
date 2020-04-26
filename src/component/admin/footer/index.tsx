@@ -6,4 +6,4 @@ const Footer = () => (
   </div>
 );
 
-export default memo(Footer, () => true);
+export default memo(Footer);

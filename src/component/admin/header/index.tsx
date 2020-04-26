@@ -14,4 +14,4 @@ Header.propTypes = {
   title: PropTypes.string.isRequired
 };
 
-export default memo(Header, (prevProps, nextProps) => prevProps.title === nextProps.title);
+export default memo(Header);

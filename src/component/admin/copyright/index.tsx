@@ -10,4 +10,4 @@ const Copyright = () => (
   </Typography>
 );
 
-export default memo(Copyright, () => true);
+export default memo(Copyright);
