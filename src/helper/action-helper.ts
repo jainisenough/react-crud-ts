@@ -1,4 +1,4 @@
-import { Redux } from '../react-app-env';
+import { Redux } from 'react-app-env';
 export const actionTypeCreator = (actionName: string, custom?: {}, defaultAction?: boolean) => {
   let obj: any = {};
 

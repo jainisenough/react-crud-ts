@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { ComponentType, useEffect, useState } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import storage from '../../helper/storage';
-import { ADMIN } from '../../route-link';
-import Loading from '../loading';
+import storage from 'helper/storage';
+import { ADMIN } from 'route-link';
+import Loading from 'component/loading';
 
-const PrivateRoute = ({ component: Component, ...rest }: { component: React.ComponentType<RouteProps> }) => {
+const PrivateRoute = ({ component: Component, ...rest }: { component: ComponentType<RouteProps> }) => {
   const [token, setToken] = useState<unknown>(undefined);
   useEffect(() => {
     (async () => {
       try {
-        const token = await storage.getItem('X-Access-Token');
-        setToken(token);
+        const getToken = await storage.getItem('X-Access-Token');
+        setToken(getToken);
       } catch (e) {
         console.log(e);
         setToken(null);

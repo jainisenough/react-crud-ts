@@ -15,5 +15,16 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "javascript.format.semicolons": "insert",
+  "javascript.implicitProjectConfig.checkJs": true,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "typescript.format.semicolons": "insert",
+  "typescript.implementationsCodeLens.enabled": true,
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.referencesCodeLens.showOnAllFunctions": true,
+  "typescript.suggest.completeFunctionCalls": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

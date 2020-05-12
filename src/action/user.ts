@@ -1,5 +1,5 @@
-import { actionTypeCreator } from '../helper/action-helper';
-import { post } from '../helper/request';
+import { actionTypeCreator } from 'helper/action-helper';
+import { post } from 'helper/request';
 
 export const userActionType = actionTypeCreator('USER');
 export const login = (email: string, password: string) =>

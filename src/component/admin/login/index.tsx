@@ -15,12 +15,12 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import storage from '../../../helper/storage';
-import { login } from '../../../action/user';
-import { ADMIN } from '../../../route-link';
+import storage from 'helper/storage';
+import { login } from 'action/user';
+import { ADMIN } from 'route-link';
 import useStyles from './style';
 
-const Copyright = lazy(() => import('../copyright'));
+const Copyright = lazy(() => import('component/admin/copyright'));
 
 const Login = ({ login }: any) => {
   const history = useHistory();

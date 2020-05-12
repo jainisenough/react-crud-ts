@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import _get from 'lodash/get';
 import _isEmpty from 'lodash/isEmpty';
-import { getUsers } from '../../../action/user';
+import { getUsers } from 'action/user';
 
 const User = ({ getUsers, users }: any) => {
   useEffect(() => {
     if (_isEmpty(users.data)) {
       getUsers();
     }
-  }, [getUsers]);
-  console.log(users);
+  }, [getUsers, users.data]);
   return <p>{JSON.stringify(users)}</p>;
 };
 
@@ -38,4 +37,4 @@ User.propTypes = {
 };
 
 const UserComponent = connect(mapStateToProps, mapDispatchToProps)(User);
-export default memo(UserComponent, () => true);
+export default memo(UserComponent);

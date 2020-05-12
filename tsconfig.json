@@ -7,17 +7,22 @@
       "esnext"
     ],
     "allowJs": true,
+    "baseUrl": "./src",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
+    "traceResolution": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react"
+  },
+  "paths": {
+    "*": [ "*"]
   },
   "include": [
     "src", "src/react-app-env.d.ts"
