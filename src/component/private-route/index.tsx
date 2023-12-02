@@ -1,11 +1,10 @@
-import React, { ComponentType, useEffect, useState } from 'react';
-import { Route, Redirect, RouteProps } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 import storage from 'helper/storage';
 import { ADMIN } from 'route-link';
 import Loading from 'component/loading';
 
-const PrivateRoute = ({ component: Component, ...rest }: { component: ComponentType<RouteProps> }) => {
+const PrivateRoute = () => {
   const [token, setToken] = useState<unknown>(undefined);
   useEffect(() => {
     (async () => {
@@ -18,24 +17,7 @@ const PrivateRoute = ({ component: Component, ...rest }: { component: ComponentT
       }
     })();
   }, []);
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        token === undefined ? <Loading /> : token ? <Component {...props} /> : <Redirect to={ADMIN.LOGIN} />
-      }
-    />
-  );
-};
-
-PrivateRoute.defaultProps = {
-  exact: false
-};
-
-PrivateRoute.propTypes = {
-  component: PropTypes.object.isRequired,
-  path: PropTypes.string.isRequired,
-  exact: PropTypes.bool
+  return token === undefined ? <Loading /> : token ? <Outlet /> : <Navigate to={ADMIN.LOGIN} />;
 };
 
 export default PrivateRoute;

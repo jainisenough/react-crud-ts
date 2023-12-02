@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { ADMIN } from './route-link';
 import Loading from 'component/loading';
@@ -16,10 +16,12 @@ const App = () => (
     <Suspense fallback={<Loading />}>
       <ErrorBoundary>
         <Header title="Admin App" />
-        <Switch>
-          <Route exact path={ADMIN.LOGIN} component={Login} />
-          <PrivateRoute exact path={ADMIN.USER} component={User} />
-        </Switch>
+        <Routes>
+          <Route path={ADMIN.LOGIN} element={<Login />} />
+          <Route element={<PrivateRoute />}>
+            <Route path={ADMIN.USER} element={<User />} />
+          </Route>
+        </Routes>
         <Footer />
       </ErrorBoundary>
     </Suspense>

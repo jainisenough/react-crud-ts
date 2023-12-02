@@ -1,9 +1,10 @@
 import { catchError } from 'rxjs/operators';
-import { combineEpics, StateObservable, ActionsObservable } from 'redux-observable';
+import { combineEpics, StateObservable } from 'redux-observable';
 import { Action } from 'redux';
 import { usersEpic } from './user';
+import { Observable } from 'rxjs';
 
-export default (action$: ActionsObservable<Action>, store$: StateObservable<any>, deps: any) =>
+export default (action$: Observable<Action<any>>, store$: StateObservable<any>, deps: any) =>
   combineEpics(usersEpic)(action$, store$, deps).pipe(
     catchError((error, source) => {
       console.error(error);

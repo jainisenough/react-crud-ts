@@ -19,10 +19,23 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "types": ["node", "jest", "@testing-library/jest-dom"],
   },
   "paths": {
     "*": [ "*"]
+  },
+  "rules": {
+    "import/extensions": [
+       "error",
+       "ignorePackages",
+       {
+         "js": "never",
+         "jsx": "never",
+         "ts": "never",
+         "tsx": "never"
+       }
+    ]
   },
   "include": [
     "src", "src/react-app-env.d.ts"

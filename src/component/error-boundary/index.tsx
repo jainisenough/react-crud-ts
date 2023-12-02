@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 
-class ErrorBoundary extends Component<{}, { hasError: boolean }> {
+class ErrorBoundary extends Component<{children?: ReactNode}, { hasError: boolean }> {
   static propTypes = {
     children: PropTypes.array.isRequired
   };
-  constructor(props: {}) {
+  constructor(props: {children?: ReactNode}) {
     super(props);
     this.state = { hasError: false };
   }

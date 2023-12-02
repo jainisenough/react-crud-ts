@@ -1,36 +1,43 @@
 import React, { memo, lazy } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useTheme } from '@emotion/react';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import { string as yupString, object as yupObject } from 'yup';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import { styled } from '@mui/system';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import storage from 'helper/storage';
 import { login } from 'action/user';
 import { ADMIN } from 'route-link';
-import useStyles from './style';
+
+const StyledForm = styled('form')(({ theme }) => ({
+  width: '100%',
+  margin: theme.spacing(1)
+}));
 
 const Copyright = lazy(() => import('component/admin/copyright'));
 
 const Login = ({ login }: any) => {
-  const history = useHistory();
-  const classes = useStyles();
+  const navigate = useNavigate();
+  const theme = useTheme();
+  console.log(theme);
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>AJ</Avatar>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 8 }}>
+        <Avatar sx={{ margin: 1, backgroundColor: '' }}>AJ</Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -39,7 +46,7 @@ const Login = ({ login }: any) => {
           onSubmit={async values => {
             const resp = await login(values.email, values.password);
             storage.setItem('X-Access-Token', resp.response.headers['X-Access-Token']);
-            history.replace(ADMIN.USER);
+            navigate(ADMIN.USER, { replace: true });
           }}
           validationSchema={yupObject().shape({
             email: yupString().email().required('Required'),
@@ -48,7 +55,7 @@ const Login = ({ login }: any) => {
         >
           {({ values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit }) => {
             return (
-              <form className={classes.form} noValidate onSubmit={handleSubmit}>
+              <StyledForm noValidate onSubmit={handleSubmit}>
                 <TextField
                   variant="outlined"
                   margin="normal"
@@ -85,23 +92,25 @@ const Login = ({ login }: any) => {
                   fullWidth
                   variant="contained"
                   color="primary"
-                  className={classes.submit}
+                  sx={{
+                    margin: '3 0 2'
+                  }}
                   disabled={isSubmitting}
                 >
                   Sign In
                 </Button>
-                <Grid container justify="center" alignItems="center">
+                <Grid container justifyContent="center" alignItems="center">
                   <Grid item>
                     <Link href="#" variant="body2">
                       Forgot password?
                     </Link>
                   </Grid>
                 </Grid>
-              </form>
+              </StyledForm>
             );
           }}
         </Formik>
-      </div>
+      </Box>
       <Box mt={8}>
         <Copyright />
       </Box>

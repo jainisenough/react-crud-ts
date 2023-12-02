@@ -20,9 +20,9 @@ const persistedReducer = persistReducer(
 );
 
 export default async (preloadedState?: Redux.State) => {
-  let composedEnhacer: StoreEnhancer<{ dispatch: unknown }, {}>;
+  let composedEnhacer: StoreEnhancer<unknown>;
   if (process.env.NODE_ENV === 'development') {
-    const { composeWithDevTools } = await import('redux-devtools-extension');
+    const { composeWithDevTools } = await import('@redux-devtools/extension');
     composedEnhacer = composeWithDevTools(...enhancers);
   } else {
     composedEnhacer = compose(...enhancers);
